@@ -45,4 +45,4 @@ v1.0: initial release.
 No existing upgrades.
 
 == Screenshots ==
-N/a
+1. assets/logo.png
