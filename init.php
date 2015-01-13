@@ -2,7 +2,7 @@
 /*
 Plugin Name: Bop Search Box Item Type For Nav Menus
 Description: Adds search box as a choice of item in navigation menus.
-Version: 1.0
+Version: 1.0.1
 Author: The Bop
 Author URI: http://thebop.biz
 License: GPL2
@@ -12,6 +12,8 @@ Text Domain: bop-nav-search-box-item
 */
 
 defined('ABSPATH') or die("Absolutely not!");
+
+if( ! class_exists( 'Bop_Nav_Search_Box_Item' ) && ! function_exists( 'bop_nav_search_box_item' ) ):
 
 class Bop_Nav_Search_Box_Item {
 	
@@ -166,14 +168,15 @@ class Bop_Nav_Search_Box_Item {
 	}
 }
 
-if( ! function_exists( 'bop_nav_search_box_item' ) ){
-	function bop_nav_search_box_item(){
-		if( ! ( $o = wp_cache_get( 'setup', 'bop_nav_search_box_item' ) ) ){
-			$o = new Bop_Nav_Search_Box_Item();
-			wp_cache_set( 'setup', $o, 'bop_nav_search_box_item' );
-		}
-		return $o;
+
+function bop_nav_search_box_item(){
+	if( ! ( $o = wp_cache_get( 'setup', 'bop_nav_search_box_item' ) ) ){
+		$o = new Bop_Nav_Search_Box_Item();
+		wp_cache_set( 'setup', $o, 'bop_nav_search_box_item' );
 	}
+	return $o;
 }
 
 bop_nav_search_box_item();
+
+endif;
