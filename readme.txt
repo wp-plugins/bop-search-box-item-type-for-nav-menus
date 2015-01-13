@@ -15,21 +15,14 @@ Adds search box as a choice of item in navigation menus admin area.
 
 Features include:
 
-*search box available as a choice in the admin area for navigation menus,
-
-*as many boxes can be added to a nav menu as one likes,
-
-*search boxes can be added as children of other menu items (useful for, e.g., mega-menus),
-
-*capacity to add label, placeholder and css classes from the admin area to each search box,
-
-*the hook get_nav_search_box_form to customise the html output of these search boxes,
-
-*lightweight,
-
-*in keeping styles, html, behaviour, etc., with wordpress defaults,
-
-*works straight out of the box, no configuration needed.
+* search box available as a choice in the admin area for navigation menus,
+* as many boxes can be added to a nav menu as one likes,
+* search boxes can be added as children of other menu items (useful for, e.g., mega-menus),
+* capacity to add label, placeholder and css classes from the admin area to each search box,
+* the hook get_nav_search_box_form to customise the html output of these search boxes,
+* lightweight,
+* in keeping styles, html, behaviour, etc., with wordpress defaults,
+* works straight out of the box, no configuration needed.
 
 == Installation ==
 
