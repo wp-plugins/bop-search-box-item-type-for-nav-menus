@@ -2,7 +2,7 @@
 /*
 Plugin Name: Bop Search Box Item Type For Nav Menus
 Description: Adds search box as a choice of item in navigation menus.
-Version: 1.0.1
+Version: 1.1.0
 Author: The Bop
 Author URI: http://thebop.biz
 License: GPL2

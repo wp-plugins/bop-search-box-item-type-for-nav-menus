@@ -3,7 +3,7 @@ Contributors: joe_bopper
 Tags: bop, nav, menu, nav menu, nav menu item type, search, search box, navigation
 Requires at least: 3.4
 Tested up to: 4.1
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,10 @@ Keep in mind that this is being accessed as part of a walk and that $item, $dept
 
 == Changelog ==
 
+= v1.1.0 =
+* Added js and css so the plugin actually works.
+* All previous versions updated to include the js and css files which should have shipped in the first place.
+
 = v1.0.1: Very minor changes =
 * Added protection against plugin duplication.
 * ReadMe improved for greater legibility.
@@ -51,11 +55,14 @@ Keep in mind that this is being accessed as part of a walk and that $item, $dept
 
 == Screenshots ==
 
-1. A view of a *wp-admin/nav-menus.php* screen with the plugin enabled. `search-item-collapsed.png`
+1. A view of a *wp-admin/nav-menus.php* screen with the plugin enabled.
 
-2. A view of the expanded search box menu item in the admin area. `search-item-expanded.png`
+2. A view of the expanded search box menu item in the admin area.
 
 == Upgrade Notice ==
+
+= v1.1.0 =
+Important update. All previous downloads should update to this. The plugins js and css were missing previously. No thanks go to wp-svn for causing this mistake in the first place.
 
 = 1.0.1 =
 Very minor update to protect against plugin duplication.
