@@ -2,8 +2,8 @@
 Contributors: joe_bopper
 Tags: bop, nav, menu, nav menu, nav menu item type, search, search box, navigation
 Requires at least: 3.4
-Tested up to: 4.1
-Stable tag: 1.1.0
+Tested up to: 4.1.1
+Stable tag: 1.2.0
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
