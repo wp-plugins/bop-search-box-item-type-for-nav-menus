@@ -43,6 +43,12 @@ Keep in mind that this is being accessed as part of a walk and that $item, $dept
 
 == Changelog ==
 
+= v1.2.0 =
+* Found a workaround to some poor core wp code which shows two unexpected notices when adding a search menu item by ajax into a menu in wp-admin/nav-menus.php.
+* Added a fix to wordpress's bizarre decision to hide the plugin from new nav-menu users. Not a problem for most users as most make a menu before activating this plugin.
+* Removed some redundant unused code
+* Added code comments to help with debugging, etc.
+
 = v1.1.0 =
 * Added js and css so the plugin actually works.
 * All previous versions updated to include the js and css files which should have shipped in the first place.
@@ -60,6 +66,9 @@ Keep in mind that this is being accessed as part of a walk and that $item, $dept
 2. A view of the expanded search box menu item in the admin area.
 
 == Upgrade Notice ==
+
+= v1.2.0 =
+A fair amount of change, but there shouldn't be too much difference to the user experience. In essence, a couple of minor fixes and a clean up.
 
 = v1.1.0 =
 Important update. All previous downloads should update to this. The plugins js and css were missing previously. No thanks go to wp-svn for causing this mistake in the first place.
