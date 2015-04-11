@@ -44,11 +44,14 @@ class Bop_Nav_Search_Box_Item {
 		$this->url = plugin_dir_url( __FILE__ );
 		
 		//inits
-		add_action( 'init', array( $this, 'init' ) );
-		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		add_action( 'init', array( $this, 'on_init' ) );
+		add_action( 'admin_init', array( $this, 'on_admin_init' ) );
 		
 		//Admin js & css
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_styles_and_scripts' ) );
+		
+		//Help Tab
+		add_action( 'admin_head-nav-menus.php', array( $this, 'on_load_nav_menus_screen_head' ) );
 	}
 	
 	/*
@@ -56,7 +59,7 @@ class Bop_Nav_Search_Box_Item {
 	 * This doesn't really need to be here but I have it in every plugin.
 	 *
 	 */
-	function init(){
+	function on_init(){
 		add_filter( 'walker_nav_menu_start_el', array( $this, 'walker_nav_menu_start_el' ), 1, 4 );
 	}
 	
@@ -64,7 +67,7 @@ class Bop_Nav_Search_Box_Item {
 	 * Code to run at admin_init.
 	 *
 	 */
-	function admin_init(){
+	function on_admin_init(){
 		$this->add_nav_menu_meta_box();
 		
 		$this->fix_ajax_functionality();
@@ -80,15 +83,6 @@ class Bop_Nav_Search_Box_Item {
 		global $pagenow;
 		if ( 'nav-menus.php' !== $pagenow ){
             return;
-		}
-		
-		//Stop the ridiculous thing where nav-menu boxes get hidden from new nav-menu users
-		if ( ( $hidden = get_user_option( 'metaboxhidden_nav-menus' ) ) !== false ){
-			if( is_array( $hidden ) && ( $k = array_search( 'bop_nav_search_box_item_meta_box', $hidden ) ) !== false ){
-				unset( $hidden[$k] );
-				$user = wp_get_current_user();
-				update_user_option( $user->ID, 'metaboxhidden_nav-menus', $hidden, true );
-			}
 		}
 		
 		add_meta_box(
@@ -217,14 +211,17 @@ class Bop_Nav_Search_Box_Item {
 					<span class="spinner"></span>
 				</span>
 			</p>
-			
-			<?php if( current_user_can( 'manage_options' ) ): ?>
-				<p class="howto">
-					<?php _e( 'To edit the html output of the search box use the hook <strong>get_nav_search_box_form</strong> as you would the hook <a href="https://developer.wordpress.org/reference/hooks/get_search_form/">get_search_form</a>. The difference between these is that there are three additional arguments passed to the hook. These are: $form (the current html), $item (the nav-menu-item), $depth (the current depth of the menu in the walker), $args (the arguments of the menu as given in the wp_nav_menu function call). That is, the same arguments as passed to <a href="https://developer.wordpress.org/reference/hooks/walker_nav_menu_start_el/">walker_nav_menu_start_el</a> hook.', 'bop-nav-search-box-item' ) ?>
-				</p>
-				<a href="#" class="bop-nav-search-box-item-view-more hide-if-no-js"><?php _e( 'Show Developer Info', 'bop-nav-search-box-item' ) ?></a>
-			<?php endif ?>
 		</div>
+		<script type="text/javascript">
+			(function($){
+				$(window).on('load', function(){
+					$('#submit-searchboxitemdiv').on('click', function(e){
+						e.preventDefault();
+						$('#searchboxitemdiv').addSelectedToMenu();
+					});
+				});
+			})(jQuery);
+		</script>
 		<?php
 	}
 	
@@ -302,11 +299,36 @@ class Bop_Nav_Search_Box_Item {
 		if( $hook == 'nav-menus.php' ){
 			wp_register_style( 'bop_nav_search_box_item_admin_css', $this->url . self::CSSURL .  'style.css', false, '1.0.0' );
 			wp_enqueue_style( 'bop_nav_search_box_item_admin_css' );
-			
-			wp_register_script( 'bop_nav_search_box_item_admin_script', $this->url . self::JSURL .  'nav-menus.js', array( 'jquery' ), '1.0' );
-			wp_enqueue_script( 'bop_nav_search_box_item_admin_script' );
-			wp_localize_script( 'bop_nav_search_box_item_admin_script', 'bop_nav_search_box_item_admin_script_local', array( 'show_dev_info'=>__( 'Show Developer Info', 'bop-nav-search-box-item' ), 'hide_dev_info'=>__( 'Hide Developer Info', 'bop-nav-search-box-item' ) ) );
 		}
+	}
+	
+	/*
+	 * Add help tab.
+	 *
+	 */
+	function on_load_nav_menus_screen_head(){
+		if( current_user_can( 'manage_options' ) ){
+			get_current_screen()->add_help_tab(
+				array(
+					'title' => __( 'Search Box', 'bop-nav-search-box-item' ),
+					'id' => 'bop_nav_search_box_item_help_tab',
+					'callback' => array( $this, 'help_tab' )
+				)
+			);
+		}
+	}
+	
+	/*
+	 * Help tab html.
+	 *
+	 */
+	function help_tab(){
+		?>
+		<p><strong><?php _e( 'Developer Info', 'bop-nav-search-box-item' ) ?></strong></p>
+		<p>
+			<?php _e( 'To edit the html output of the search box use the hook <strong>get_nav_search_box_form</strong> as you would the hook <a href="https://developer.wordpress.org/reference/hooks/get_search_form/">get_search_form</a>. The difference between these is that there are three additional arguments passed to the hook. These are: $form (the current html), $item (the nav-menu-item), $depth (the current depth of the menu in the walker), $args (the arguments of the menu as given in the wp_nav_menu function call). That is, the same arguments as passed to <a href="https://developer.wordpress.org/reference/hooks/walker_nav_menu_start_el/">walker_nav_menu_start_el</a> hook.', 'bop-nav-search-box-item' ); ?>
+		</p>
+		<?php 
 	}
 }
 

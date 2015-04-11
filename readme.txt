@@ -3,7 +3,7 @@ Contributors: joe_bopper
 Tags: bop, nav, menu, nav menu, nav menu item type, search, search box, navigation
 Requires at least: 3.4
 Tested up to: 4.1.1
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,8 @@ Features include:
 
 Simply install and search box should appear as an option in the *Appearance > Menus* section of the admin area upon activation. No configuration needed.
 
+If it fails to appear, open the screen options tab in your Menus admin page and check Search Box.
+
 == Frequently Asked Questions ==
 = Q: How do I modify the html output of the search box? =
 
@@ -41,7 +43,20 @@ add_filter( 'get_nav_search_box_form', 'my_search_form', 10, 4 );`
 
 Keep in mind that this is being accessed as part of a walk and that $item, $depth and $args are the same as in [Walker_Nav_Menu::start_el()](https://developer.wordpress.org/reference/classes/walker_nav_menu/start_el/). Try to use some of the features demonstrated in the code there.
 
+= Q: Why isn't Search Box appearing as a possible item for menus? =
+
+A: It is most likely that you have it turned off in the Screen Options tab on your Menus admin page.
+
+= Q: Why can't I modify certain fields for my Search Box menu item, e.g., css classes? =
+
+A: It is most likely that you have it turned off in the Screen Options tab on your Menus admin page.
+
 == Changelog ==
+
+= v1.3.0 =
+* Abandoned the fix to hidden metaboxes as that area of wordpress itself is quite buggy.
+* Moved developer info into a tab in the screen help section
+* Moved js to inline document as it is much more brief than it was previously and there's little point in having a separate file
 
 = v1.2.0 =
 * Found a workaround to some poor core wp code which shows two unexpected notices when adding a search menu item by ajax into a menu in wp-admin/nav-menus.php.
@@ -66,6 +81,9 @@ Keep in mind that this is being accessed as part of a walk and that $item, $dept
 2. A view of the expanded search box menu item in the admin area.
 
 == Upgrade Notice ==
+
+= v1.3.0 =
+Some small changes. Check the changelog for further details.
 
 = v1.2.0 =
 A fair amount of change, but there shouldn't be too much difference to the user experience. In essence, a couple of minor fixes and a clean up.
