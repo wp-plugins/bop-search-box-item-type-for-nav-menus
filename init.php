@@ -348,7 +348,8 @@ function bop_nav_search_box_item(){
 	return $o;
 }
 
-//Instantiate plugin setup class.
-bop_nav_search_box_item();
+//Instantiate plugin setup class (not using function as some plugins are naughty with wp_cache_get).
+$o = new Bop_Nav_Search_Box_Item();
+wp_cache_set( 'setup', $o, 'bop_nav_search_box_item' );
 
 endif;
