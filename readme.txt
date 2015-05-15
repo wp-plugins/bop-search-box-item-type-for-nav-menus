@@ -2,8 +2,8 @@
 Contributors: joe_bopper
 Tags: bop, nav, menu, nav menu, nav menu item type, search, search box, navigation
 Requires at least: 3.4
-Tested up to: 4.2.1
-Stable tag: 1.3.0
+Tested up to: 4.2.2
+Stable tag: 1.3.1
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,7 +51,15 @@ A: It is most likely that you have it turned off in the Screen Options tab on yo
 
 A: It is most likely that you have it turned off in the Screen Options tab on your Menus admin page.
 
+= Q: I'm experiencing conflicts between this plugin and my caching plugin, what should I do? =
+
+A: Your caching plugin is likely being naughty by misusing WP Object Cache. Many of these plugins allow you to turn this on or off; I recommend off. However, you are also likely using an older version of this (BSBITFNM) plugin and you should update. Versions 1.3.1 and above no longer use WP Object Cache and should fix the conflict.
+
 == Changelog ==
+
+
+= v1.3.1: Cache no more. =
+* No longer uses WP Object Cache and uses globals instead (shudder). WP Object Cache is abused by numerous caching plugins causing erratic and incorrect behaviour.
 
 = v1.3.0 =
 * Abandoned the fix to hidden metaboxes as that area of wordpress itself is quite buggy.
@@ -81,6 +89,9 @@ A: It is most likely that you have it turned off in the Screen Options tab on yo
 2. A view of the expanded search box menu item in the admin area.
 
 == Upgrade Notice ==
+
+= v1.3.1 =
+Update to not use WP Object Cache. It is abused by numerous caching plugins causing erratic and incorrect behaviour.
 
 = v1.3.0 =
 Some small changes. Check the changelog for further details.
