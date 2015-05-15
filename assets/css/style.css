@@ -1,0 +1,16 @@
+#searchboxitemdiv .tabs-panel-active{
+	height:0;
+}
+#searchboxitemdiv .tabs-panel-active .menu-item-object-id{
+	visibility:hidden;
+}
+#searchboxitemdiv p.howto{
+	transition: max-height 2s;
+	overflow: hidden;
+}
+#searchboxitemdiv p.howto{
+	max-height: 0px;
+}
+#searchboxitemdiv p.howto.bop-nav-search-box-item-showing{
+	max-height: 500px;
+}
