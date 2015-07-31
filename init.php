@@ -339,7 +339,7 @@ class Bop_Nav_Search_Box_Item {
 			 * @param array		$args	Arguments passed to wp_nav_menu.
 			 */
 			if( apply_filters( 'bop_nav_search_show_submit_button', true, $item, $depth, $args ) ): ?>
-				<input type="submit" id="searchsubmit" value="<?php 
+				<input type="submit" class="search-submit" value="<?php 
 					/**
 					 * Filter output of item title.
 					 *
