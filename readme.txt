@@ -31,6 +31,12 @@ Simply install and search box should appear as an option in the *Appearance > Me
 If it fails to appear, open the screen options tab in your Menus admin page and check Search Box.
 
 == Frequently Asked Questions ==
+= Q: Annoying html class change in version 1.4.0? =
+
+A: This has been rectified, but depending on when you downloaded v1.4.0, it may be incorrect on your system.
+
+See this support question for more info and a fix: https://wordpress.org/support/topic/please-dont-modify-prev-used-classes-in-the-plugin-it-breaks-developed-theme
+
 = Q: How do I modify the output of the search box? =
 
 A: There are a number of filters available for the output of the search box and they are written about below. The most comprehensive method is to use the filter hook *get_nav_search_box_form* and return the html you want to see. For example:
